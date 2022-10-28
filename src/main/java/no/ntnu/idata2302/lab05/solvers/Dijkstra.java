@@ -20,17 +20,8 @@ import java.util.List;
 public class Dijkstra implements Solver {
 
     public List<Vector> solve(Maze maze, Search knownCells) {
-        knownCells.markAsPending(maze.entry());
-        while (knownCells.hasPendingCells()) {
-            var position = knownCells.closestPending();
-            for (var move : maze.validMovesAt(position)) {
-                var end = position.add(move);
-                knownCells.record(position, move, end);
-                if (maze.isExit(end))
-                    return knownCells.movesTo(end);
-            }
-        }
-        return null;
+        // TODO: Implement this method
+        throw new RuntimeException("Not yet implemented. ");
     }
 
 }
