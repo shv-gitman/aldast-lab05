@@ -117,8 +117,12 @@ public class Search {
      * a shorter path.
      */
     void record(Vector start, Vector move, Vector end) {
-        // TODO: Implement this method
-        throw new RuntimeException("Not yet implemented.");
+        if (knownCells.containsKey(end)) {
+            knownCells.put(start, new Record(start, move.opposite(), distanceTo(end)));
+        } else {
+            markAsPending(end);
+            knownCells.put(end, new Record(end, move, 0));
+        }
     }
 
     /**
@@ -187,10 +191,17 @@ class Record {
     }
 
     public String toString() {
-        return String.format("%s (from %s) %d (%s)",
+        if (move != null) {
+            return String.format("%s (from %s) (%s)",
+                position,
+                move.asMoveName(),
+                distance);
+        } else {
+            return String.format("%s (from %s) (%s)",
                 position,
                 move,
                 distance);
+        }
     }
 
 }

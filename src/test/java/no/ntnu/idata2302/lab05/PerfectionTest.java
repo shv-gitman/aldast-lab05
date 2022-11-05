@@ -21,10 +21,10 @@ public  class PerfectionTest {
     @Test(timeout=100)
     public void shouldBePerfect() {
         var maze = new Maze(new String[]{"+-+-+-+",
-                                             "|S|   |",
-                                             "+ + + +",
-                                             "|   |E|",
-                                             "+-+-+-+"});
+                                         "|S|   |",
+                                         "+ + + +",
+                                         "|   |E|",
+                                         "+-+-+-+"});
         assertTrue(new PerfectionChecker().isPerfect(maze));
     }
 
@@ -32,20 +32,20 @@ public  class PerfectionTest {
     @Test(timeout=100)
     public void shouldNotBePerfect() {
         var maze = new Maze(new String[]{"+-+-+-+",
-                                             "|S|   |",
-                                             "+ + + +",
-                                             "|    E|",
-                                             "+-+-+-+"});
+                                         "|S|   |",
+                                         "+ + + +",
+                                         "|    E|",
+                                         "+-+-+-+"});
         assertFalse(new PerfectionChecker().isPerfect(maze));
     }
 
     @Test(timeout=100)
     public void shouldNotBePerfectEither() {
         var maze = new Maze(new String[]{"+-+-+-+",
-                                             "|S    |",
-                                             "+ +-+ +",
-                                             "|    E|",
-                                             "+-+-+-+"});
+                                         "|S    |",
+                                         "+ +-+ +",
+                                         "|    E|",
+                                         "+-+-+-+"});
         assertFalse(new PerfectionChecker().isPerfect(maze));
     }
 

@@ -19,8 +19,17 @@ import java.util.List;
 public class BFS implements Solver {
 
     public List<Vector> solve(Maze maze, Search knownCells) {
-        // TODO: Implement this method
-        throw new RuntimeException("Not yet implemented.");
+        knownCells.markAsPending(maze.entry());
+        while (knownCells.hasPendingCells()) {
+            var position = knownCells.firstPending();
+            for (var move : maze.validMovesAt(position)) {
+                var end = position.add(move);
+                knownCells.record(position, move, end);
+                if (maze.isExit(end))
+                    return knownCells.movesTo(end);
+            }
+        }
+        return null;
     }
 
 }

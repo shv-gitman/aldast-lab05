@@ -8,10 +8,8 @@
 
 package no.ntnu.idata2302.lab05.generators;
 
-import no.ntnu.idata2302.lab05.Dimension;
-import no.ntnu.idata2302.lab05.Factory;
-import no.ntnu.idata2302.lab05.Generator;
-import no.ntnu.idata2302.lab05.Maze;
+import no.ntnu.idata2302.lab05.*;
+import no.ntnu.idata2302.lab05.solvers.BFS;
 
 import java.util.Random;
 
@@ -25,8 +23,26 @@ public class MyGenerator implements Generator {
 
     @Override
     public Maze generate(Factory factory, Dimension dimension) {
-        // TODO: Implement this method
-        throw new RuntimeException("Not yet implemented.");
+        AldousBroder aldousBroder = new AldousBroder(new Random());
+        Maze maze = aldousBroder.generate(factory, dimension);
+
+        return maze;
+    }
+
+    public static void main(String[] args) {
+        MyGenerator myGenerator = new MyGenerator(new Random());
+        Factory factory = new Factory();
+
+        Maze maze = myGenerator.generate(factory, new Dimension(10, 20));
+        var solver = new BFS();
+        maze.show();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Vector move: solver.solve(maze)) {
+            stringBuilder.append(move.asMoveName() + ", ");
+        }
+
+        System.out.println(stringBuilder);
     }
 
 }
