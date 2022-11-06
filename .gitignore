@@ -2,6 +2,7 @@
 .classpath
 .factorypath
 .project
+.idea/*
 target/*
 
 # Emacs
